@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "358977633159",
+    "project_id": "nakha-7a073",
+    "storage_bucket": "nakha-7a073.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358977633159:android:e3d3dead9f74a3088ff122",
+        "android_client_info": {
+          "package_name": "com.ao307.nakha"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_M5rtpt4p7-W8y6nnm9dx4NTg2LphJ48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
