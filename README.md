@@ -1,19 +1,51 @@
-# nakha
+# Nakha
 
-A new Flutter project.
+## لمحة عامة
 
-## Getting Started
+`Nakha` هو تطبيق Flutter متكامل يعتمد على معمارية نظيفة ويجمع بين Firebase و Bloc لتقديم تجربة مستخدم عربية عصرية. يدعم التطبيق تعدد اللغات، إشعارات فورية، دردشة، وإدارة ملفات المستخدم (بروفايل، غطاء، المفضلة) مع واجهات متجاوبة لجميع الأجهزة.
 
-This project is a starting point for a Flutter application.
+## ما يميّزه
 
-A few resources to get you started if this is your first Flutter project:
+- إدارة ملف المستخدم بما في ذلك رفع صور الغلاف والتفاصيل الأساسية.
+- واجهة تفاعلية للقوائم المفضلة للمزودين والمنتجات مع تحديث مباشر عبر Bloc.
+- دردشة فورية وإشعارات Firebase يربط المستخدمين والمزودين.
+- تأثيرات للواجهة تستفيد من `ScreenUtil` و`ResponsiveHelper` لضمان التوافق مع الهواتف والأجهزة اللوحية.
+- دعم كامل للغات (العربية، الإنجليزية، والأوردو) عبر `easy_localization`.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## التقنيات والأدوات
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- `Flutter` (مع `ScreenUtil`, `flutter_bloc`) للواجهة وتنسيقها.
+- `Firebase` (Authentication, Firestore/Cloud Messaging) للتواصل، الإشعارات والبيانات.
+- حاوية حقن الاعتمادية `get_it` لتفكيك المسؤوليات.
+- خدمات مشتركة مثل `firebase_notification_handler_plus`, `flutter_local_notifications`, و `flutter_secure_storage`.
 
-flutter clean
-flutter build aab --obfuscate --split-debug-info=build/app/outputs/symbols
+## كيفية البدء
+
+1. تأكد من تثبيت Flutter (الإصدار المتوافق مع المشروع) وتهيئة `sdk` للمنصات المطلوبة.
+2. استيراد ملفات التكوين الخاصة بـ Firebase (`google-services.json` للأندرويد و`GoogleService-Info.plist` للـ iOS).
+3. شغّل الأوامر التالية من جذر المشروع:
+   ```bash
+   flutter clean
+   flutter pub get
+   flutter run
+   ```
+
+## بناء نسخة الإنتاج
+
+- لتنفيذ بناء AAB مع تشفير الخرائط وتجزئة معلومات التصحيح:
+  ```bash
+  flutter build aab --obfuscate --split-debug-info=build/app/outputs/symbols
+  ```
+- عدّل إعدادات `build.gradle` و`Info.plist` حسب الحاجة قبل التوقيع.
+
+## اختبارات
+
+- شغّل اختبارات الويدجت لو احببت تتأكد من الأمور الأساسية:
+  ```bash
+  flutter test
+  ```
+
+## ملاحظات إضافية
+
+- يعتمد التطبيق على ملفات ترجمة JSON موجودة في `assets/translation/`.
+- إذا استخدمت خدمات Firebase إضافية، فتأكد من تحديث قواعد الأمان وتفويضات الخادم الملائمة.
