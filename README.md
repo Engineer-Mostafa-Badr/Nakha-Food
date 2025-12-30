@@ -56,28 +56,16 @@ lib/
 
 ## 📦 التثبيت
 
-bash
-
+```bash
 # تنظيف المشروع
-
-bash
 flutter clean
 
 # تثبيت الحزم
-
-bash
 flutter pub get
 
 # بناء APK (مع obfuscation)
-
-bash
 flutter build apk --obfuscate --split-debug-info=build/app/outputs/symbols
-
-````
-# شغّل التطبيق:
-```bash
-flutter run
-````
+```
 
 ## 📝 ملاحظات التطوير
 
