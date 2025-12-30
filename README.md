@@ -49,41 +49,26 @@ lib/
 
 ## كيف تجهّز المشروع
 
-1. تأكد من أن Flutter 3.17+ و Dart 3.8+ مثبتين.
-2. إذا احتجت Firebase، انسخ الملفات `google-services.json` للأندرويد و`GoogleService-Info.plist` للآيفون.
-3. حمّل الحزم:
+1. حمّل الحزم:
    ```bash
    flutter pub get
    ```
-4. إذا عدّلت نماذج أو إشعارات، شغّل:
+2. إذا عدّلت نماذج أو إشعارات، شغّل:
    ```bash
    flutter pub run build_runner build --delete-conflicting-outputs
    ```
-5. لو استبدلت شعارات أو شاشة بداية:
+3. لو استبدلت شعارات أو شاشة بداية:
    ```bash
    dart run flutter_launcher_icons:main
    dart run flutter_native_splash:create
    ```
-6. شغّل التطبيق:
+4. شغّل التطبيق:
    ```bash
    flutter run
    ```
-
-## التحقق والاختبارات
-
-- لتشغيل اختبارات الواجهات أو الأجزاء، استخدم:
-  ```bash
-  flutter test
-  ```
 
 ## ملاحظات لطيفة
 
 - التطبيق يحدد على أي شاشة يفتح (تعريف، دخول، أو الصفحة الرئيسية) حسب حالة المستخدم المخزنة.
 - جميع البيانات الحساسة محفوظة في `MainSecureStorage` لضمان أمان التوكنات والمفاتيح.
 - بنية Clean Architecture مع BLoC تعني أن كل ميزة منفصلة، وبالتالي تعديل التصميم أو إضافة شاشة لا يؤثر على باقي التطبيق.
-
-## خطوات مقترحة لاحقة
-
-- أضف اختبارات إضافية (Unit + Widget) للأجزاء الحيوية.
-- راقب الأداء والإشعارات عبر Firebase Analytics وLogs.
-- أتمتة CI تشمل `flutter test` و`flutter analyze` قبل الدمج.
