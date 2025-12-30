@@ -1,51 +1,82 @@
-# Nakha
+# Nakha (EltayebTrans)
 
-## لمحة عامة
+## نظرة عامة
 
-`Nakha` هو تطبيق Flutter متكامل يعتمد على معمارية نظيفة ويجمع بين Firebase و Bloc لتقديم تجربة مستخدم عربية عصرية. يدعم التطبيق تعدد اللغات، إشعارات فورية، دردشة، وإدارة ملفات المستخدم (بروفايل، غطاء، المفضلة) مع واجهات متجاوبة لجميع الأجهزة.
+`EltayebTrans` هو تطبيق Flutter لإدارة خدمات النقل والتوصيل. مصمم لدعم السائقين والممثلين في متابعة الرحلات، المصروفات، وصيانة المركبات من خلال واجهة عربية سلسة تعتمد على معمارية نظيفة.
 
-## ما يميّزه
+## الخدمات الأساسية
 
-- إدارة ملف المستخدم بما في ذلك رفع صور الغلاف والتفاصيل الأساسية.
-- واجهة تفاعلية للقوائم المفضلة للمزودين والمنتجات مع تحديث مباشر عبر Bloc.
-- دردشة فورية وإشعارات Firebase يربط المستخدمين والمزودين.
-- تأثيرات للواجهة تستفيد من `ScreenUtil` و`ResponsiveHelper` لضمان التوافق مع الهواتف والأجهزة اللوحية.
-- دعم كامل للغات (العربية، الإنجليزية، والأوردو) عبر `easy_localization`.
+- **إدارة الرحلات**: استلام الرحلات، عرض المسارات، وتأكيد تنفيذ الرحلات مع تتبع الحالة في الوقت الحقيقي.
+- **إدارة المصروفات**: تسجيل المصروفات اليومية، رفع إيصالات، وطلب صيانة مباشرة داخل التطبيق.
+- **الملف الشخصي**: تخصيص بيانات السائق أو الممثل وإدارة الوسائل المقبولة للتواصل.
+- **الإشعارات الفورية**: تنبيهات للرحلات، المصروفات، ورسائل الدعم الفني عبر Firebase + Pusher.
+- **الدعم الفني**: نظام تذاكر يربط المستخدم بفريق الدعم لحل أية مشاكل بسرعة.
 
-## التقنيات والأدوات
+## بنية المشروع
 
-- `Flutter` (مع `ScreenUtil`, `flutter_bloc`) للواجهة وتنسيقها.
-- `Firebase` (Authentication, Firestore/Cloud Messaging) للتواصل، الإشعارات والبيانات.
-- حاوية حقن الاعتمادية `get_it` لتفكيك المسؤوليات.
-- خدمات مشتركة مثل `firebase_notification_handler_plus`, `flutter_local_notifications`, و `flutter_secure_storage`.
+ينفذ المشروع Clean Architecture مع فصل واضح بين الطبقات:
 
-## كيفية البدء
+```
+lib/
+├── config/          # إعدادات عامة (Themes, Routing, Firebase)
+├── core/
+│   ├── api/         # طبقة الشبكة (Dio و API Consumer)
+│   ├── components/  # مكونات واجهة قابلة لإعادة الاستخدام
+│   ├── extensions/  # Extensions مساعدة
+│   ├── services/    # خدمات مشتركة (Notifications, Pusher)
+│   └── utils/       # Helpers و utilities
+└── features/        # الوحدات الوظيفية (Features)
+    ├── auth/        # المصادقة
+    ├── home/        # إدارة الرحلات
+    ├── profile/     # الملف الشخصي
+    ├── expenses/    # المصروفات
+    ├── notifications/ # الإشعارات
+    └── onboarding/  # شاشات التعريف
+```
 
-1. تأكد من تثبيت Flutter (الإصدار المتوافق مع المشروع) وتهيئة `sdk` للمنصات المطلوبة.
-2. استيراد ملفات التكوين الخاصة بـ Firebase (`google-services.json` للأندرويد و`GoogleService-Info.plist` للـ iOS).
-3. شغّل الأوامر التالية من جذر المشروع:
-   ```bash
-   flutter clean
-   flutter pub get
-   flutter run
-   ```
+## التقنيات المستخدمة
 
-## بناء نسخة الإنتاج
+- **Flutter 3.8.1+**
+- **State Management**: `flutter_bloc`
+- **DI**: `GetIt`
+- **Localization**: `easy_localization`
+- **Network**: `Dio`
+- **Storage محلي**: `flutter_secure_storage`
+- **Firebase**: Core، Messaging
+- **Real-Time**: `pusher_channels_flutter`
 
-- لتنفيذ بناء AAB مع تشفير الخرائط وتجزئة معلومات التصحيح:
-  ```bash
-  flutter build aab --obfuscate --split-debug-info=build/app/outputs/symbols
-  ```
-- عدّل إعدادات `build.gradle` و`Info.plist` حسب الحاجة قبل التوقيع.
+## خطوات الإعداد
 
-## اختبارات
+```bash
+# تنظيف المشروع
+flutter clean
 
-- شغّل اختبارات الويدجت لو احببت تتأكد من الأمور الأساسية:
-  ```bash
-  flutter test
-  ```
+# تثبيت الحزم
+flutter pub get
 
-## ملاحظات إضافية
+# تشغيل التطبيق
+flutter run
+```
 
-- يعتمد التطبيق على ملفات ترجمة JSON موجودة في `assets/translation/`.
-- إذا استخدمت خدمات Firebase إضافية، فتأكد من تحديث قواعد الأمان وتفويضات الخادم الملائمة.
+### بناء نسخة إنتاج
+
+```bash
+flutter build apk --obfuscate --split-debug-info=build/app/outputs/symbols
+```
+
+## اللغات المدعومة
+
+- العربية (ar) – الإفتراضي
+- الإنجليزية (en)
+- الأردية (ur)
+
+## ملاحظات تطويرية
+
+- بنية نظيفة لكل Feature (data/domain/presentation).
+- الكود منظم بمستوى Senior Developer مع فصل واضح للثوابت، الألوان، والـ widgets القابلة لإعادة الاستخدام.
+- الترجمة من ملفات JSON داخل `assets/translation/`.
+- اعتمد على ملفات التكوين الخاصة بـ Firebase قبل التشغيل (الدخول لـ `google-services.json` و`GoogleService-Info.plist`).
+
+## الترخيص
+
+جميع الحقوق محفوظة. هذا مشروع خاص ولا يُستخدم بدون إذن.
